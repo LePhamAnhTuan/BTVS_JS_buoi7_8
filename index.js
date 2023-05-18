@@ -25,15 +25,15 @@ function luuTruMang() {
   }
   var bienMinDuong = arrLuuSo[0];
   for (var i = 0; i < arrLuuSo.length; i++) {
-    if (arrLuuSo[i] < bienMinDuong && bienMinDuong > 0 && arrLuuSo[i] > 0) {
+    if (arrLuuSo[i] < bienMinDuong && bienMinDuong >= 0 && arrLuuSo[i] >= 0) {
       bienMinDuong = arrLuuSo[i];
     }
   }
   var soChanCuoiCung = arrLuuSo[0];
-  for (var i = 0; i < arrLuuSo.length; i++) {
+  for (var i = arrLuuSo.length; i >= 0; i--) {
     if (arrLuuSo[i] % 2 == 0) {
       soChanCuoiCung = arrLuuSo[i];
-      i = arrLuuSo[i];
+      break;
     } else {
       soChanCuoiCung = -1;
     }
@@ -52,6 +52,29 @@ function luuTruMang() {
       soNguyenToDauTien = -1;
     }
   }
+  soSanhAmDuong = "";
+  var demSoAm = 0;
+  for (var i = 0; i < arrLuuSo.length; i++) {
+    if (arrLuuSo[i] < 0) {
+      demSoAm++;
+    }
+    demSoAm;
+    console.log("demSoDuong: ", demSoDuong);
+    console.log("demSoAm: ", demSoAm);
+  }
+  if (demSoAm > demSoDuong) {
+    document.getElementById(
+      "ketQua11"
+    ).innerHTML = `so am la ${demSoAm} so duong la ${demSoDuong} => so am > so duong`;
+  } else if (demSoAm < demSoDuong) {
+    document.getElementById(
+      "ketQua11"
+    ).innerHTML = `so am la ${demSoAm} so duong la ${demSoDuong} => so am < so duong`;
+  } else if ((demSoAm = demSoDuong)) {
+    document.getElementById(
+      "ketQua11"
+    ).innerHTML = `so am la ${demSoAm} so duong la ${demSoDuong} => so am = so duong`;
+  }
 
   document.getElementById("ketQua1").innerHTML = arrLuuSo;
   document.getElementById(
@@ -68,6 +91,7 @@ function luuTruMang() {
   document.getElementById(
     "ketQua9"
   ).innerHTML = `so nguyen to dau tien trong mang ${soNguyenToDauTien}`;
+  document.getElementById("soBatKy").value = "";
 }
 function sapXepTangDan() {
   sapXepTangDan = arrLuuSo.sort(function (a, b) {
@@ -80,11 +104,30 @@ function sapXepTangDan() {
 function doiViTri() {
   var vitri1 = document.getElementById("vitri1").value * 1;
   var vitri2 = document.getElementById("vitri2").value * 1;
-  for (var i = 0; i < arrLuuSo.length; i++) {
-    if (vitri1 == i) {
-      delete arrLuuSo[vitri2];
-      arrLuuSo[vitri1] = arrLuuSo[vitri2];
+  // console.log("arrLuuSo: ", arrLuuSo);
+  // var luuViTri2 = arrLuuSo[vitri2];
+  // var doiViTri = arrLuuSo.splice(vitri1, 1, `${arrLuuSo[vitri2]}`);
+  // var doiViTri1 = doiViTri.splice(vitri2, 1, `${arrLuuSo[vitri1]}`);
+  // var doiViTri = arrLuuSo.splice(vitri2, 0, "${arrLuuSo[vitri1]}");
+  var temp = arrLuuSo[vitri1];
+  arrLuuSo[vitri1] = arrLuuSo[vitri2];
+  console.log("arrLuuSo: ", arrLuuSo);
+  arrLuuSo[vitri2] = temp;
+  // console.log("arrLuuSo: ", arrLuuSo);
+  document.getElementById("ketQua7").innerHTML = arrLuuSo;
+}
+var arrSoThuc = [];
+function timSoNguyen() {
+  var nhapSoThuc = document.getElementById("nhapSoThuc").value * 1;
+  arrSoThuc.push(nhapSoThuc);
+  var soNguyen = "";
+  for (var i = 0; i < arrSoThuc.length; i++) {
+    if (arrSoThuc[i] % 1 == 0) {
+      soNguyen++;
     }
   }
-  document.getElementById("ketQua7").innerHTML = arrLuuSo;
+  console.log("soNguyen: ", soNguyen);
+  document.getElementById("inMangSoThuc").innerHTML = arrSoThuc;
+  document.getElementById("ketQua10").innerHTML = soNguyen;
+  document.getElementById("nhapSoThuc").value = "";
 }
