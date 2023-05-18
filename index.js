@@ -23,12 +23,29 @@ function luuTruMang() {
       bienMin = arrLuuSo[i];
     }
   }
-  var bienMinDuong = arrLuuSo[0];
+
+  // var timSoDuongNhoNhat = arrLuuSo[0];
+  // for (var i = 0; i < arrLuuSo.length; i++) {
+  //   if (arrLuuSo[i] > 0 && timSoDuongNhoNhat >= arrLuuSo[i]) {
+  //     timSoDuongNhoNhat = arrLuuSo[i];
+  //   }
+  // }
+  var timSoDuong = arrLuuSo[0];
+  var arrSoDuong = [];
   for (var i = 0; i < arrLuuSo.length; i++) {
-    if (arrLuuSo[i] < bienMinDuong && bienMinDuong >= 0 && arrLuuSo[i] >= 0) {
-      bienMinDuong = arrLuuSo[i];
+    if (arrLuuSo[i] > 0) {
+      arrSoDuong.push(arrLuuSo[i]);
+    } else {
+      soDuongNhoNhat = -1;
     }
   }
+  for (var j = 0; j < arrSoDuong.length; j++) {
+    var soDuongNhoNhat = arrSoDuong[0];
+    if (soDuongNhoNhat > arrSoDuong[j]) {
+      soDuongNhoNhat = arrSoDuong[j];
+    }
+  }
+
   var soChanCuoiCung = arrLuuSo[0];
   for (var i = arrLuuSo.length; i >= 0; i--) {
     if (arrLuuSo[i] % 2 == 0) {
@@ -65,32 +82,32 @@ function luuTruMang() {
   if (demSoAm > demSoDuong) {
     document.getElementById(
       "ketQua11"
-    ).innerHTML = `so am la ${demSoAm} so duong la ${demSoDuong} => so am > so duong`;
+    ).innerHTML = `Số âm là ${demSoAm} Số dương là ${demSoDuong} =>Số âm > Số dương`;
   } else if (demSoAm < demSoDuong) {
     document.getElementById(
       "ketQua11"
-    ).innerHTML = `so am la ${demSoAm} so duong la ${demSoDuong} => so am < so duong`;
+    ).innerHTML = `Số âm là ${demSoAm} Số dương là ${demSoDuong} =>Số âm < Số dương`;
   } else if ((demSoAm = demSoDuong)) {
     document.getElementById(
       "ketQua11"
-    ).innerHTML = `so am la ${demSoAm} so duong la ${demSoDuong} => so am = so duong`;
+    ).innerHTML = `Số âm là ${demSoAm} Số dương là ${demSoDuong} =>Số âm = Số dương`;
   }
 
   document.getElementById("ketQua1").innerHTML = arrLuuSo;
   document.getElementById(
     "ketQua2"
-  ).innerHTML = `tong so duong la ${tongSoDuong}`;
-  document.getElementById("ketQua3").innerHTML = `co ${demSoDuong} so duong`;
-  document.getElementById("ketQua4").innerHTML = `so nho nhat la ${bienMin}`;
+  ).innerHTML = `Tổng số dương là ${tongSoDuong}`;
+  document.getElementById("ketQua3").innerHTML = `Có ${demSoDuong} số dương`;
+  document.getElementById("ketQua4").innerHTML = `Số nhỏ nhất là ${bienMin}`;
   document.getElementById(
     "ketQua5"
-  ).innerHTML = `so duong nho nhat la ${bienMinDuong}`;
+  ).innerHTML = `Số dương nhỏ nhất là ${soDuongNhoNhat}`;
   document.getElementById(
     "ketQua6"
-  ).innerHTML = `so chan cuoi cung cua mang la ${soChanCuoiCung}`;
+  ).innerHTML = `Số chẳn cuối cùng của mảng là ${soChanCuoiCung}`;
   document.getElementById(
     "ketQua9"
-  ).innerHTML = `so nguyen to dau tien trong mang ${soNguyenToDauTien}`;
+  ).innerHTML = `Số nguyên tố đầu tiên trong mảng là ${soNguyenToDauTien}`;
   document.getElementById("soBatKy").value = "";
 }
 function sapXepTangDan() {
@@ -99,21 +116,16 @@ function sapXepTangDan() {
   });
   document.getElementById(
     "ketQua8"
-  ).innerHTML = `sap xep tang dan ${sapXepTangDan}`;
+  ).innerHTML = `Sắp xếp tăng dần ${sapXepTangDan}`;
 }
 function doiViTri() {
   var vitri1 = document.getElementById("vitri1").value * 1;
   var vitri2 = document.getElementById("vitri2").value * 1;
-  // console.log("arrLuuSo: ", arrLuuSo);
-  // var luuViTri2 = arrLuuSo[vitri2];
-  // var doiViTri = arrLuuSo.splice(vitri1, 1, `${arrLuuSo[vitri2]}`);
-  // var doiViTri1 = doiViTri.splice(vitri2, 1, `${arrLuuSo[vitri1]}`);
-  // var doiViTri = arrLuuSo.splice(vitri2, 0, "${arrLuuSo[vitri1]}");
   var temp = arrLuuSo[vitri1];
   arrLuuSo[vitri1] = arrLuuSo[vitri2];
   console.log("arrLuuSo: ", arrLuuSo);
   arrLuuSo[vitri2] = temp;
-  // console.log("arrLuuSo: ", arrLuuSo);
+
   document.getElementById("ketQua7").innerHTML = arrLuuSo;
 }
 var arrSoThuc = [];
@@ -128,6 +140,8 @@ function timSoNguyen() {
   }
   console.log("soNguyen: ", soNguyen);
   document.getElementById("inMangSoThuc").innerHTML = arrSoThuc;
-  document.getElementById("ketQua10").innerHTML = soNguyen;
+  document.getElementById(
+    "ketQua10"
+  ).innerHTML = `Số số nguyên trong mảng là ${soNguyen}`;
   document.getElementById("nhapSoThuc").value = "";
 }
