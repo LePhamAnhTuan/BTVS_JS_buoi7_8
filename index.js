@@ -30,7 +30,7 @@ function luuTruMang() {
   //     timSoDuongNhoNhat = arrLuuSo[i];
   //   }
   // }
-  var timSoDuong = arrLuuSo[0];
+
   var arrSoDuong = [];
   for (var i = 0; i < arrLuuSo.length; i++) {
     if (arrLuuSo[i] > 0) {
@@ -39,8 +39,8 @@ function luuTruMang() {
       soDuongNhoNhat = -1;
     }
   }
+  var soDuongNhoNhat = arrSoDuong[0];
   for (var j = 0; j < arrSoDuong.length; j++) {
-    var soDuongNhoNhat = arrSoDuong[0];
     if (soDuongNhoNhat > arrSoDuong[j]) {
       soDuongNhoNhat = arrSoDuong[j];
     }
@@ -101,7 +101,7 @@ function luuTruMang() {
   document.getElementById("ketQua4").innerHTML = `Số nhỏ nhất là ${bienMin}`;
   document.getElementById(
     "ketQua5"
-  ).innerHTML = `Số dương nhỏ nhất là ${soDuongNhoNhat}`;
+  ).innerHTML = `Mảng chỉ chứa số dương ${arrSoDuong} Số dương nhỏ nhất là ${soDuongNhoNhat}`;
   document.getElementById(
     "ketQua6"
   ).innerHTML = `Số chẳn cuối cùng của mảng là ${soChanCuoiCung}`;
